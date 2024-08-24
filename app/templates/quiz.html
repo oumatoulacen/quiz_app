@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mb-4">{{ quiz.title }}</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <!-- Iterate over questions -->
+        {% for question in questions %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ question.text }}</h3>
+                
+                <!-- Iterate over options for each question -->
+                {% for option in question.options %}
+                <div class="form-check">
+                    <input type="radio" id="option_{{ question.id }}_{{ loop.index }}" 
+                           name="question_{{ question.id }}" 
+                           value="{{ loop.index }}"
+                           class="form-check-input" required>
+                    <label for="option_{{ question.id }}_{{ loop.index }}" class="form-check-label">
+                        {{ option }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+{% endblock %}

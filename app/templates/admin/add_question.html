@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Add Question</h1>
+    <form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <!-- Question Text -->
+    <div class="form-group">
+        {{ form.text.label }}<br>
+        {{ form.text(size=64, class_="form-control") }}<br>
+        {% for error in form.text.errors %}
+        <span style="color: red;">[{{ error }}]</span><br>
+        {% endfor %}
+    </div>
+    
+    <!-- Quiz Selection -->
+    <div class="form-group">
+        {{ form.quiz_id.label }}<br>
+        {{ form.quiz_id(class_="form-control") }}<br>
+        {% for error in form.quiz_id.errors %}
+        <span style="color: red;">[{{ error }}]</span><br>
+        {% endfor %}
+    </div>
+    
+    <!-- Options -->
+    <div class="form-group">
+        <label>Options:</label>
+        {% for option in form.options %}
+        <div>
+            {{ option.label }} {{ option(size=64, class_="form-control") }}<br>
+            {% for error in option.errors %}
+            <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Correct Option -->
+    <div class="form-group">
+        {{ form.correct_option.label }}<br>
+        {{ form.correct_option(class_="form-control") }}<br>
+        {% for error in form.correct_option.errors %}
+        <span style="color: red;">[{{ error }}]</span><br>
+        {% endfor %}
+    </div>
+    
+    <!-- Submit Button -->
+    <div class="form-group">
+        {{ form.submit(class_="btn btn-primary") }}
+    </div>
+    </form>
+{% endblock %}

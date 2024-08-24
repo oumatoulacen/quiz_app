@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Quiz Results</h1>
+    
+    <!-- Display the user's score -->
+    <div class="alert alert-info">
+        <p class="mb-0">Your score: <strong>{{ quiz_result.score }}/{{ quiz_result.quiz.total_questions }}</strong></p>
+    </div>
+    
+    <!-- List of responses -->
+    <ul class="list-group">
+        {% for response in quiz_result.responses %}
+        <li class="list-group-item">
+            <h5 class="mb-3"><strong>Question:</strong> {{ response.question.text }}</h5>
+            
+            <!-- User's answer -->
+            <p>
+                <strong>Your Answer:</strong> 
+                <span class="{{ 'text-success' if response.is_correct else 'text-danger' }}">
+                    {{ response.question.options[response.selected_option] }}
+                </span>
+            </p>
+            
+            <!-- Correct answer -->
+            <p><strong>Correct Answer:</strong> {{ response.question.options[response.question.correct_option] }}</p>
+            
+            <!-- Correctness feedback -->
+            <p>
+                <strong>Correct:</strong> 
+                <span class="{{ 'badge bg-success' if response.is_correct else 'badge bg-danger' }}">
+                    {{ 'Yes' if response.is_correct else 'No' }}
+                </span>
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Link back to quizzes -->
+    <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-4">Back to Quizzes</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Available Quizzes</h1>
+    <ul class="list-group">
+        {% for quiz in quizzes %}
+            <li class="list-group-item mb-4 bg-light">
+                <h4>
+                    {{ quiz.title }}
+                </h4>
+                <p class="mb-1 text-muted">{{ quiz.description }}</p>
+                {% if current_user.is_authenticated %}
+                    {% if quiz.is_completed_by(current_user) %}
+                        <span class="badge bg-success">Completed</span>
+                        <br>
+                        <a href="{{ url_for('main.quiz_result', quiz_result_id=quiz.get_result_id(current_user)) }}" class="btn btn-primary">View Result</a>
+                    {% elif quiz.is_started_by(current_user) %}
+                        <span class="badge bg-warning">In Progress</span>
+                        <br>
+                        <a href="{{ url_for('main.quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Continue</a>
+                    {% else %}
+                        <a href="{{ url_for('main.quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Start</a>
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

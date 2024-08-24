@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .dashboard-container {
+            margin-top: 30px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Manage Quizzes
+                    </div>
+                    <div class="card-body">
+                        <p>Create, update, view, or delete quizzes.</p>
+                        <a href="{{ url_for('main.quizzes') }}" class="btn btn-primary">View All Quizzes</a>
+                        <a href="{{ url_for('main.add_quiz') }}" class="btn btn-success">Add New Quiz</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Additional management sections can be added here -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Manage Categories
+                    </div>
+                    <div class="card-body">
+                        <p>Create, update, view, or delete quiz categories.</p>
+                        <a href="{{ url_for('main.categories') }}" class="btn btn-primary">View All Categories</a>
+                        <a href="{{ url_for('main.add_category') }}" class="btn btn-success">Add New Category</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Manage Questions
+                    </div>
+                    <div class="card-body">
+                        <p>Create, update, view, or delete quiz questions.</p>
+                        <a href="{{ url_for('main.questions') }}" class="btn btn-primary">View All Questions</a>
+                        <a href="{{ url_for('main.add_question') }}" class="btn btn-success">Add New Question</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
+

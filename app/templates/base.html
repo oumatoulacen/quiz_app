@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body class="bg-">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light py-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">Quizzes</a>
+                <div class="d-flex justify-content-between w-100">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Additional nav items can be added here if needed -->
+                    </ul>
+                    <ul class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.is_admin %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.quizzes') }}">Quizzes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.categories') }}">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.questions') }}">Questions</a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.profile' ) }}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.logout') }}" style="color: brown;">Logout</a>
+                            </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.register') }}">Sign Up</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% if current_user.is_admin %}
+        <div class="alert alert-warning" role="alert">
+            You are an admin user.
+            <!-- dashboard -->
+            <a href="{{ url_for('main.dashboard') }}" class="alert-link">Go to Admin Dashboard</a>
+        </div>
+        {% endif %}
+        <div class="my-5">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

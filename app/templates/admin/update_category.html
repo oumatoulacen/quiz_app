@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Update Category</h1>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group mb-3">
+        <label for="name">{{ form.name.label }}</label>
+        {{ form.name(class="form-control", size=32) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Update Category</button>
+</form>
+{% endblock %}

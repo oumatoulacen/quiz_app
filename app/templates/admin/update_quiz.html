@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Add New Quiz</h1>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group mb-3">
+        <label for="title">{{ form.title.label }}</label>
+        {{ form.title(class="form-control", size=32) }}
+    </div>
+    <div class="form-group mb-3">
+        <label for="description">{{ form.description.label }}</label>
+        {{ form.description(class="form-control", size=64) }}
+    </div>
+    <div class="form-group mb-4">
+        <label for="category_id">{{ form.category_id.label }}</label>
+        {{ form.category_id(class="form-select") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Update Quiz</button>
+</form>
+{% endblock %}

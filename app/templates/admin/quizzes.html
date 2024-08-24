@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Quizzes</h1>
+{% for quiz in quizzes %}
+<div class="card mb-2">
+    <div class="card-body">
+        <h5 class="card-title">
+            {{ quiz.title }}
+        </h5>
+        <p class="card-text">{{ quiz.description }}</p>
+        <a href="{{ url_for('main.update_quiz', quiz_id=quiz.id) }}" class="btn btn-primary ml-1">Update</a>
+        <a href="{{ url_for('main.delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endfor %}
+<hr>
+<a href="{{ url_for('main.add_quiz') }}" class="btn btn-success">Create Quiz</a>
+{% endblock %}

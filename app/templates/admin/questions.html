@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for quiz in quizzes %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title ">
+                    {{ quiz.title }}
+                </h5>
+                {% for question in quiz.questions %}
+                    <p class="card-text ml-5">{{ question.text }}</p>
+                    <!-- if admin update -->
+                    <a href="{{ url_for('main.update_question', quiz_id=quiz.id, question_id=question.id) }}" class="btn btn-primary ml-5">Update</a>
+                    <a href="{{ url_for('main.delete_question', quiz_id=quiz.id, question_id=question.id) }}" class="btn btn-danger">Delete</a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    <hr>
+    <a href="{{ url_for('main.add_question') }}" class="btn btn-success">Create Question</a>
+{% endblock %}

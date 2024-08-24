@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Profile Page</h1>
+    <!-- User Information -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4 class="mb-0">User Information</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <!-- Add more user details if needed -->
+        </div>
+    </div>
+
+    <!-- Quiz Results -->
+    <div class="card">
+        <div class="card-header">
+            <h4 class="mb-0">Quizzes Result</h4>
+        </div>
+        <div class="card-body">
+            {% if quiz_results %}
+                <ul class="list-group">
+                    {% for result in quiz_results %}
+                    <li class="list-group-item mb-2">
+                        <h5>{{ result.quiz.title }}</h5>
+                        <p><strong>Score:</strong> {{ result.score }}/{{ result.quiz.total_questions }}</p>
+                        <a href="{{ url_for('main.quiz_result', quiz_result_id=result.id) }}" class="btn btn-primary">View Details</a>
+                        <!-- delete quiz result -->
+                        <a href="{{ url_for('main.delete_quiz_result', quiz_result_id=result.id) }}" class="btn btn-danger">Delete</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">You have not completed any quizzes yet.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
