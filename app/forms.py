@@ -40,6 +40,7 @@ class QuizForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired(), Length(min=10, max=500)])
     category_id = SelectField('Category', coerce=int)
     submit = SubmitField('Add Quiz')
+    total_questions = IntegerField('Total Questions', validators=[DataRequired(), NumberRange(min=0, max=100)])
 
     # Populate the category choices from the database when the form is created(this technique is called lazy loading)
     def __init__(self, *args, **kwargs):

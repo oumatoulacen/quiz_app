@@ -7,4 +7,3 @@ class Config:
     SECRET_KEY = getenv('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = getenv('SQLALCHEMY_DATABASE_URI')
     DEBUG = getenv('DEBUG') == 'True'
-    # postgresql://username:password@localhost/dbname

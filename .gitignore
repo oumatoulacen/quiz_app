@@ -1,8 +1,8 @@
 .env
 .env.local
 .gitignore
-__pycache__/*
-**/__pycache__/*
+# python
+app/__pycache__/
+__pycache__/
 *.pyc
 *.pyo
-*.pyd

@@ -157,6 +157,7 @@ def update_quiz(quiz_id):
         quiz.title = form.title.data
         quiz.description = form.description.data
         quiz.category_id = form.category_id.data
+        quiz.total_questions = form.total_questions.data
         db.session.commit()
         flash('Quiz updated successfully.', 'success')
         return redirect(url_for('main.quizzes'))
