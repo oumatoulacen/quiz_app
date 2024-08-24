@@ -79,7 +79,7 @@ def add_category():
     form = CategoryForm()
     if form.validate_on_submit():
         # check if category already exist
-        if Category.query.filter_by(name=form.name.data):
+        if Category.query.filter_by(name=form.name.data).first():
             return jsonify({ "message": "category already exist"})
         
         category = Category(name=form.name.data)
